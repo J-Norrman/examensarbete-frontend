@@ -24,11 +24,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <body>
+      <header style={{ padding: '10px', backgroundColor: 'hsla(var(--coolgrey-950), var(--opacity-90))', textAlign: 'center' }}>
+        <h1>Path of Exile Gems</h1>
+      </header>
+      <main style={{ margin: '20px' }}>{children}</main>
+      <footer style={{ padding: '10px', textAlign: 'center', backgroundColor: 'hsla(var(--coolgrey-950), var(--opacity-90))' }}>
+        <p>© 2024 Path of Exile Gems Viewer</p>
+      </footer>
+    </body>
+  </html>
   );
 }
