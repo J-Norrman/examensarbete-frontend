@@ -25,11 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en">
     <body>
-      <header style={{ padding: '10px', backgroundColor: 'hsla(var(--coolgrey-950), var(--opacity-90))', textAlign: 'center' }}>
-        <h1>Path of Exile Gems</h1>
+      <header className="flex shadow-md py-4 px-4 sm:px-10 bg-slate-800 font-[sans-serif] min-h-70 tracking-wide relative z-50">
+        <h1 className="text-2xl">Path of Exile Gems</h1>
+        
       </header>
       <main style={{ margin: '20px' }}>{children}</main>
-      <footer style={{ padding: '10px', textAlign: 'center', backgroundColor: 'hsla(var(--coolgrey-950), var(--opacity-90))' }}>
+      <footer style={{ padding: '10px', textAlign: 'center' }}>
         <p>© 2024 Path of Exile Gems Viewer</p>
       </footer>
     </body>
