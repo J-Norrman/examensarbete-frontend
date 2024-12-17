@@ -7,7 +7,7 @@ interface GemCardProps {
 
 const GemCard: React.FC<GemCardProps> = ({ gem }) => {
     return (
-      <div className="relative flex items-center space-x-2 p-4 border border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 group"
+      <div className="relative flex items-center space-x-2 p-4 w-50 h-20 border border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 group"
       >
         <img src={gem.icon} alt={gem.name} className="w-12 h-12" />
         <div>
