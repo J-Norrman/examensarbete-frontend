@@ -7,9 +7,10 @@ import CategoryButtons from './CategoryButtons';
 
 interface InfiniteScrollGemsProps {
   initialGems: SkillGem[];
+  searchGem: string;
 }
 
-const InfiniteScrollGems: React.FC<InfiniteScrollGemsProps> = ({ initialGems }) => {
+const InfiniteScrollGems: React.FC<InfiniteScrollGemsProps> = ({ initialGems, searchGem}) => {
   const [gems, setGems] = useState<SkillGem[]>(initialGems);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -58,14 +59,14 @@ const InfiniteScrollGems: React.FC<InfiniteScrollGemsProps> = ({ initialGems }) 
     }
   };
   const filteredGems = gems.filter((gem) => {
-    if (selectedCategory === 'All') return true;
-    return gem.category?.toLowerCase() === selectedCategory.toLowerCase();
+    const matchesCategory = selectedCategory === 'All' || gem.category?.toLowerCase() === selectedCategory.toLowerCase();
+    const matchesSearch = gem.name.toLowerCase().includes(searchGem.toLowerCase());
+    return matchesCategory && matchesSearch;
   });
 
   
   useEffect(() => {
     const onScroll = () => handleScroll();
-
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, [loading,hasMore,page]);

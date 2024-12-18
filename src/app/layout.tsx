@@ -24,14 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body>
-      <header className="flex shadow-md py-4 px-4 sm:px-10 bg-slate-800 font-[sans-serif] min-h-70 tracking-wide relative z-50">
+    <body className="flex flex-col min-h-screen text-white">
+      <header className="sticky top-0 z-50 flex shadow-md py-4 px-4 sm:px-10 bg-slate-800 min-h-70 tracking-wide ">
         <h1 className="text-2xl">Path of Exile Gems</h1>
-        
       </header>
-      <main style={{ margin: '20px' }}>{children}</main>
-      <footer style={{ padding: '10px', textAlign: 'center' }}>
+      <main className="flex-grow mx-5 my-5">{children}</main>
+      <footer className="py-4 bg-gray-800 text-center text-sm text-gray-400">
         <p>© 2024 Path of Exile Gems Viewer</p>
+        <p>Examensarbete</p>
       </footer>
     </body>
   </html>
