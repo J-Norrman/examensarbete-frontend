@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import InfiniteScrollGems from '../components/InfiniteScrollGems';
+import React from 'react';
 import { SkillGem } from '../_types/ISkillGem';
 import ClientGemPage from '../components/ClientGemPage';
 
