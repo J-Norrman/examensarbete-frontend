@@ -19,7 +19,9 @@ const GemCard: React.FC<GemCardProps> = ({ gem }) => {
           rounded-lg shadow-lg opacity-0 group-hover:opacity-95 pointer-events-none 
           group-hover:pointer-events-auto transition duration-200 z-10"
         >
-          <h3 className="text-md font-semibold">{gem.name}</h3>
+          <h3 className="text-md font-semibold">
+            <a href={`https://www.poewiki.net/wiki/${encodeURIComponent(gem.name)}`}target="_blank" className="hover:cursor-pointer text-blue-400">{gem.name}</a>
+          </h3>
           <img src={gem.icon} alt={gem.name} className="w-10 h-10 border-gray-300"/>
           {gem.explicitModifiers?.length > 0 && (
             <ul className="mt-2 text-sm list-disc pl-5">
