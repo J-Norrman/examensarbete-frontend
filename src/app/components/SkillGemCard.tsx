@@ -20,11 +20,7 @@ const GemCard: React.FC<GemCardProps> = ({ gem }) => {
           group-hover:pointer-events-auto transition duration-200 z-10"
         >
           <h3 className="text-md font-semibold">{gem.name}</h3>
-          <img
-            src={gem.icon}
-            alt={gem.name}
-            className="w-10 h-10 border-gray-300"
-          />
+          <img src={gem.icon} alt={gem.name} className="w-10 h-10 border-gray-300"/>
           {gem.explicitModifiers?.length > 0 && (
             <ul className="mt-2 text-sm list-disc pl-5">
               {gem.explicitModifiers.map((mod, index) => (

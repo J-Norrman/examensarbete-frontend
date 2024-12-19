@@ -6,16 +6,16 @@ import SearchBar from './SearchBar';
 import { SkillGem } from '../_types/ISkillGem';
 
 interface ClientGemPageProps {
-  initialGems: SkillGem[];
+  allGems: SkillGem[];
 }
 
-const ClientGemPage: React.FC<ClientGemPageProps> = ({ initialGems }) => {
+const ClientGemPage: React.FC<ClientGemPageProps> = ({ allGems }) => {
   const [searchGem, setSearchGem] = useState('');
 
   return (
     <>
       <SearchBar searchGem={searchGem} onSearchChange={setSearchGem} />
-      <InfiniteScrollGems initialGems={initialGems} searchGem={searchGem} />
+      <InfiniteScrollGems allGems={allGems} searchGem={searchGem} />
     </>
   );
 };

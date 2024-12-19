@@ -1,75 +1,53 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef,useMemo } from 'react';
 import { SkillGem } from '../_types/ISkillGem';
 import SkillGemCard from './SkillGemCard';
 import CategoryButtons from './CategoryButtons';
 
 interface InfiniteScrollGemsProps {
-  initialGems: SkillGem[];
+  allGems: SkillGem[];
   searchGem: string;
 }
 
-const InfiniteScrollGems: React.FC<InfiniteScrollGemsProps> = ({ initialGems, searchGem}) => {
-  const [gems, setGems] = useState<SkillGem[]>(initialGems);
-  const [page, setPage] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
+const InfiniteScrollGems: React.FC<InfiniteScrollGemsProps> = ({ allGems, searchGem}) => {
+  const [visibleGems, setVisibleGems] = useState<SkillGem[]>([]);
+  const [loadedCount, setLoadedCount] = useState(50);
+  const gemsPerLoad = 50;
+  const [loading] = useState(false);
+  const [hasMore] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('All')
 
-  const fetchMoreGems = async (page: number) => {
-    if (loading) return;    
-    setLoading(true);
-    try {
-      console.log("get gems from page: ",{page})
-      const response = await fetch(`http://localhost:8080/api/skill-gems/get-all?page=${page}&size=50`,{next:{revalidate: 360}});
-      if (!response.ok) {
-        throw new Error(`Failed to fetch gems: ${response.statusText}`);
-      }
-      const data = await response.json();
-      if (data.content && data.content.length > 0) {
-        setGems((prevGems) => {
-          const existingIds = new Set(prevGems.map((gem) => gem.id));
-          const newGems = data.content.filter((gem: SkillGem) => !existingIds.has(gem.id));
-          return [...prevGems, ...newGems];
-        });
-        if (!data.hasNext) {
-          setHasMore(false); 
-        }
-      } else {
-        setHasMore(false); 
-      }
-    } catch (error) {
-      console.error('Error fetching more gems:', error);
-    } finally {
-      setLoading(false);
-    }
+  const loadMoreGems = () => {
+    if (loadedCount >= filteredGems.length) return;
+    setVisibleGems(filteredGems.slice(0,loadedCount + gemsPerLoad))
+    setLoadedCount((prevCount)=> prevCount + gemsPerLoad)
   };
 
   const handleScroll = () => {
-    if (loading || !hasMore) return;
-
-    const bottomReached = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1
-    if (bottomReached) {
-      setLoading(true)
-      fetchMoreGems(page + 1).then(() => {
-        setPage((prevPage) => prevPage + 1);
-      })
-    
+    if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1) {
+      loadMoreGems();
     }
   };
-  const filteredGems = gems.filter((gem) => {
-    const matchesCategory = selectedCategory === 'All' || gem.category?.toLowerCase() === selectedCategory.toLowerCase();
-    const matchesSearch = gem.name.toLowerCase().includes(searchGem.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const filteredGems = useMemo(() => {
+    return allGems.filter((gem) => {
+      const matchesCategory =
+        selectedCategory === 'All' || gem.category?.toLowerCase() === selectedCategory.toLowerCase();
+      const matchesSearch = gem.name.toLowerCase().includes(searchGem.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [allGems, searchGem, selectedCategory]);
 
   
   useEffect(() => {
-    const onScroll = () => handleScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [loading,hasMore,page]);
+    setVisibleGems(filteredGems.slice(0, gemsPerLoad));
+    setLoadedCount(gemsPerLoad);
+  }, [filteredGems]);
+  
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [loadedCount, filteredGems]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -79,7 +57,7 @@ const InfiniteScrollGems: React.FC<InfiniteScrollGemsProps> = ({ initialGems, se
         onSelectCategory={setSelectedCategory}
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-        {filteredGems.map((gem) => (
+        {visibleGems.map((gem) => (
           <div key={gem.id}>
             <SkillGemCard gem={gem} />
           </div>

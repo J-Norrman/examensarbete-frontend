@@ -26,6 +26,4 @@ const CategoryButtons: React.FC<CategoryButtonsProps> = ({
       );
     };
 
-
-
 export default CategoryButtons;
