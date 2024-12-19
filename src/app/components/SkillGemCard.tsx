@@ -13,14 +13,12 @@ const GemCard: React.FC<GemCardProps> = ({ gem }) => {
         <div>
           <p className="text-sm font-medium text-white">{gem.name}</p>
         </div>
-        <div
-          className="absolute left-1/2 transform -translate-x-1/2 -top-28 hidden group-hover:flex flex-col 
+        <div className="absolute left-1/2 transform -translate-x-1/2 -top-28 hidden group-hover:flex flex-col 
           items-center w-96 p-4 bg-gray-800 text-white border border-gray-700 
           rounded-lg shadow-lg opacity-0 group-hover:opacity-95 pointer-events-none 
-          group-hover:pointer-events-auto transition duration-200 z-10"
-        >
+          group-hover:pointer-events-auto transition duration-200 z-10">
           <h3 className="text-md font-semibold">
-            <a href={`https://www.poewiki.net/wiki/${encodeURIComponent(gem.name)}`}target="_blank" className="hover:cursor-pointer text-blue-400">{gem.name}</a>
+            <a href={`https://www.poewiki.net/wiki/${encodeURIComponent(gem.name)}`}target="_blank" className="hover:cursor-pointer text-blue-400 hover:text-blue-200">{gem.name}</a>
           </h3>
           <img src={gem.icon} alt={gem.name} className="w-10 h-10 border-gray-300"/>
           {gem.explicitModifiers?.length > 0 && (
