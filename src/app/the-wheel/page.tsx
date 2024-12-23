@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { useWheelContext } from '../context/WheelContext';
-import SkillGemCard from '../components/SkillGemCard'
+import SkillGemCard from '../components/SkillGemCard';
+import TheWheel from '../components/Wheel';
 
 
 const WheelPage: React.FC = () => {
@@ -10,9 +11,13 @@ const WheelPage: React.FC = () => {
   
     return (
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold mb-6 text-white">The Wheel</h1> 
+        <div className='flex flex-col items-center py-2'>
+        <h1>Don't know what to league start?</h1>
+        <h1>Let the wheel decide.</h1>
+        </div>
+        <TheWheel/>
         {wheelGems.length === 0 ? (
-          <p className="text-gray-400">No gems added to The Wheel.</p>
+          <p className="flex flex-col items-center text-gray-400">No gems added to The Wheel.</p>
         ) : (
           <div>
             <div className="mb-4">
