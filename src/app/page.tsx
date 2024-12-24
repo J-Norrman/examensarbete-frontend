@@ -9,6 +9,9 @@ export default function Home() {
     <p>
       View the <Link href="/gems">full list of skill gems</Link>.
     </p>
+    <p>
+      View the <Link href="/currency">current currency exchange rates</Link>
+    </p>
   </div>
   );
 }

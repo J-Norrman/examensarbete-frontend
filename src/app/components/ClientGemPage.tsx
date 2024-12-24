@@ -14,7 +14,11 @@ const ClientGemPage: React.FC<ClientGemPageProps> = ({ allGems }) => {
 
   return (
     <>
-      <SearchBar searchGem={searchGem} onSearchChange={setSearchGem} />
+      <SearchBar
+        searchValue={searchGem}
+        placeholder="Search currencies..."
+        onSearchChange={setSearchGem}
+      />
       <InfiniteScrollGems allGems={allGems} searchGem={searchGem} />
     </>
   );
