@@ -28,19 +28,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <WheelProvider>
-    <body className="flex flex-col min-h-screen text-white">
-      <header className="sticky top-0 z-50 shadow-md py-4 px-4 sm:px-10 bg-slate-800 min-h-70 tracking-wide flex justify-between">
-        <Link href={"/gems"} className="text-2xl">Gems</Link>
-        <Link href={"/the-wheel"} className="text-2xl">"The Wheel" (<WheelCount/>)</Link>
-        <Link href={"/currency"} className="text-2xl">Currency</Link>
-      </header>
-      <main className="flex-grow mx-5 my-5">{children}</main>
-      <footer className="py-4 bg-gray-800 text-center text-sm text-gray-400">
-        <p>© 2024 Path of Exile utility page</p>
-        <p>Examensarbete</p>
-      </footer>
-    </body>
-    </WheelProvider>
-  </html>
+        <body className="flex flex-col min-h-screen text-white">
+          <header className="sticky top-0 z-50 shadow-md py-4 px-4 sm:px-10 bg-slate-800 min-h-70 tracking-wide flex justify-between">
+            <Link href={"/gems"} className="text-2xl">
+              Gems
+            </Link>
+            <Link href={"/the-wheel"} className="text-2xl">
+              "The Wheel" (<WheelCount />)
+            </Link>
+            <Link href={"/currency"} className="text-2xl">
+              Currency
+            </Link>
+          </header>
+          <main className="flex-grow mx-5 my-5">{children}</main>
+          <footer className="py-4 bg-gray-800 text-center text-sm text-gray-400">
+            <p>© 2024 Path of Exile utility page</p>
+            <p>Examensarbete</p>
+          </footer>
+        </body>
+      </WheelProvider>
+    </html>
   );
 }

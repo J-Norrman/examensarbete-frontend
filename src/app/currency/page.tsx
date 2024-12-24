@@ -1,18 +1,20 @@
-import React from 'react';
-import ClientCurrencyPage from '../components/ClientCurrencyPage';
+import React from "react";
+import ClientCurrencyPage from "../components/ClientCurrencyPage";
 
 async function fetchCurrency() {
-  const response = await fetch('http://localhost:8080/api/currency/latest',{ next: { revalidate: 720 } });
+  const response = await fetch("http://localhost:8080/api/currency/latest", {
+    next: { revalidate: 720 },
+  });
   if (!response.ok) {
-    throw new Error('Failed to fetch currencies');
+    throw new Error("Failed to fetch currencies");
   }
   const data = await response.json();
-  return data; 
+  return data;
 }
 
 export default async function CurrencyPage() {
   const allCurrencies = await fetchCurrency();
-  console.log("allcurr: ",allCurrencies)
+  console.log("allcurr: ", allCurrencies);
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface CurrencyCardProps {
   name: string;
@@ -7,7 +7,12 @@ interface CurrencyCardProps {
   chaosIconUrl: string;
 }
 
-const CurrencyCard: React.FC<CurrencyCardProps> = ({ name, icon, chaosEquivalent, chaosIconUrl }) => {
+const CurrencyCard: React.FC<CurrencyCardProps> = ({
+  name,
+  icon,
+  chaosEquivalent,
+  chaosIconUrl,
+}) => {
   return (
     <div className="p-4 border border-gray-700 rounded-lg shadow-md">
       <div className="flex items-center space-x-4">

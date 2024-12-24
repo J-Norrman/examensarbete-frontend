@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface CategoryButtonsProps {
   categories: string[];
@@ -7,23 +7,25 @@ interface CategoryButtonsProps {
 }
 
 const CategoryButtons: React.FC<CategoryButtonsProps> = ({
-    categories,
-    selectedCategory,
-    onSelectCategory,
-
+  categories,
+  selectedCategory,
+  onSelectCategory,
 }) => {
-    return (
-        <div className="flex flex-auto justify-evenly mb-6">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => onSelectCategory(category)}
-              className={`text-2xl font-bold ${selectedCategory === category ? 'text-blue-500' : 'text-white'}`}>
-              {category} Gems
-            </button>
-          ))}
-        </div>
-      );
-    };
+  return (
+    <div className="flex flex-auto justify-evenly mb-6">
+      {categories.map((category) => (
+        <button
+          key={category}
+          onClick={() => onSelectCategory(category)}
+          className={`text-2xl font-bold ${
+            selectedCategory === category ? "text-blue-500" : "text-white"
+          }`}
+        >
+          {category} Gems
+        </button>
+      ))}
+    </div>
+  );
+};
 
 export default CategoryButtons;

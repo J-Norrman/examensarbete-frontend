@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
 interface SearchBarProps {
   searchValue: string;
@@ -8,7 +8,11 @@ interface SearchBarProps {
   onSearchChange: (value: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ searchValue, placeholder, onSearchChange }) => {
+const SearchBar: React.FC<SearchBarProps> = ({
+  searchValue,
+  placeholder,
+  onSearchChange,
+}) => {
   return (
     <div className="flex justify-center mb-4">
       <input
