@@ -34,7 +34,7 @@ export default function RootLayout({
               Gems
             </Link>
             <Link href={"/the-wheel"} className="text-2xl">
-              "The Wheel" (<WheelCount />)
+              The Wheel (<WheelCount />)
             </Link>
             <Link href={"/currency"} className="text-2xl">
               Currency

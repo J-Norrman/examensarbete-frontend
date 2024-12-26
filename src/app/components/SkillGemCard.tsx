@@ -42,7 +42,7 @@ const GemCard: React.FC<GemCardProps> = ({ gem }) => {
               onClick={handleAddToWheel}
               className="mt-1 px-2 py-1 bg-gray-800 text-white rounded hover:bg-gray-700 "
             >
-              Add to "The Wheel"
+              Add to The Wheel
             </button>
           </div>
         )}
